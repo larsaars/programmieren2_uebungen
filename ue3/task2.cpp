@@ -1,5 +1,4 @@
 #include "../pg2.h"
-
 // split a string by delimiter
 vector<string> split(string s, string delimiter) {
     size_t pos = 0;
@@ -37,7 +36,8 @@ int main(int argc, char **argv) {
     dbis.close();
 
     // outstream of database
-//    ofstream dbos("database.txt");
+    ofstream dbos;
+    dbos.open("database.txt", ios_base::app);
 
     if (argc == 2) {
         if (args[0] == "-h" || args[0] == "--help") {
@@ -52,18 +52,32 @@ int main(int argc, char **argv) {
     } else if (argc == 3) {
         if (args[0] == "-q") {
             for (int i = 0; i < database.size(); i++) {
-                // tag1,tag2,tag3 content
+                // tag1,tag2,tag3 content 
                 vector<string> entry = split(database[i], " ");
                 vector<string> tags = split(entry[0], ",");
 
+                string content = "";
+                for(int j = 1; j < entry.size(); j++) {
+                    if(j != 1)
+                        content += " ";
+
+                    content += entry[j];
+                }
+
                 for (int j = 0; j < tags.size(); j++) {
-                    cout << tags[i] << endl;
-                    if (tags[j] == args[2])
-                        cout << entry[1] << endl;
+                    if (tags[j] == args[1])
+                        cout << content << endl;
                 }
             }
         }
+    } else if(argc == 4) {
+        if(args[0] == "-a") {
+            string entry = args[1] + " " + args[2];
+            dbos << entry << endl; 
+            database.push_back(entry);
+        }
     }
 
- //   dbos.close();
+    dbos.close();
 }
+
