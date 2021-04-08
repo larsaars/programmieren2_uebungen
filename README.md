@@ -1,1 +1,1 @@
-# Übungen aus Programmieren 2.
+# Übungen aus Programmieren 2
