@@ -16,7 +16,18 @@ vector<string> split(string s, string delimiter) {
     return splits;
 }
 
+void query(vector<vector<string>> tags) {
+    
+}
+
+void add(string value) {
+
+}
+
 int main(int argc, char **argv) {
+    // key map
+    
+
     // constant variables
     vector<string> args, database;
 
@@ -41,7 +52,7 @@ int main(int argc, char **argv) {
     dbos.open("database.txt", ios_base::app);
 
 
-
+    // check tag is help
     if (argc == 2) {
         if (args[0] == "-h" || args[0] == "--help") {
             cout
@@ -52,8 +63,8 @@ int main(int argc, char **argv) {
                     "linked with given tags"
                  << endl;
         }
+    // in any other case, check for actions and their content (i.e. -q tag1,tag3 -q tag4 -a stuff)
     } else if (argc >= 3) {
-        bool ignoreNext = false;
         for(int i = 0; i < args.size(); i++) {
             if(ignoreNext)  {
                 ignoreNext = false;
