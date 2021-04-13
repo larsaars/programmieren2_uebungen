@@ -16,18 +16,18 @@ vector<string> split(string s, string delimiter) {
     return splits;
 }
 
-void query(vector<vector<string>> tags) {
+void query(vector<string> tags) {
     
 }
 
-void add(string value) {
+void add(vector<string> value) {
 
 }
 
 int main(int argc, char **argv) {
-    // key map
+    // actions map
+    map<string, void *(vector<string>)> actions {{"-q", &add}};
     
-
     // constant variables
     vector<string> args, database;
 
