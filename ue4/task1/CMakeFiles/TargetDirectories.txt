@@ -1,0 +1,2 @@
+/mnt/d/Education/Studium/KI/SoSe 2021/Programmieren/Projects/ue4/task1/CMakeFiles/rebuild_cache.dir
+/mnt/d/Education/Studium/KI/SoSe 2021/Programmieren/Projects/ue4/task1/CMakeFiles/edit_cache.dir
