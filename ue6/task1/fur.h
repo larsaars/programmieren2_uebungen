@@ -2,14 +2,18 @@
 
 #include <vector>
 #include <string>
+#include <iostream>
+
+using std::string;
+using std::cout, std::endl;
 
 class Fur {
     int len;
+    string color = "";
 
 public:
-    Fur();
-
     void grow(int time);
+    void print();
 };
 
 

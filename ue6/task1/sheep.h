@@ -1,23 +1,27 @@
 #pragma once
 
-#include "fur.h"
 #include "flock.h"
+#include "fur.h"
 
-using std::vector;
 using std::string;
+using std::vector;
 
 class Flock;
 
 class Sheep {
-    int age, color;
+  public:
+    int age;
     string name;
 
     Fur *fur = nullptr;
+
     Flock *flock = nullptr;
 
-public:
-    Sheep(const Sheep& sheep1, const Sheep& sheep2) : age(0), color(0), name("");
-        
-    void ageSheep(int time);
-};
+    Sheep() : age(0), name("") {}
+    Sheep(const Sheep &sheep1, const Sheep &sheep2) : age(0), name("") {}
 
+    ~Sheep() { delete fur; }
+
+    void ageSheep(int time);
+    void print();
+};

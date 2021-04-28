@@ -11,15 +11,13 @@ using std::string;
 class Sheep;
 
 class Flock {
-    vector<Sheep*> sheep;
+    vector<Sheep*> flock;
 
 public:
-    Flock(const vector<Sheep*>& sheep0) : sheep(sheep0) {}
-
-    ~Flock() {
-
-    }
-
-    void addSheep(const Sheep& sheep);
+    ~Flock();
+    
+    void addSheep(Sheep* sheep);
     void age(int time);
+    void print();
+    void assignFlock();
 };
