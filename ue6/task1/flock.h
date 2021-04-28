@@ -21,5 +21,5 @@ public:
     }
 
     void addSheep(const Sheep& sheep);
-
+    void age(int time);
 };
