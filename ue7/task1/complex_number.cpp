@@ -1,5 +1,6 @@
 #include <iostream>
 #include "complex_number.h"
+#include <cmath>
 
 std::ostream &operator<<(std::ostream &os, const complex_number &c) {
     os << c.real << " + " << c.imag << 'i' << std::endl;
@@ -16,8 +17,9 @@ complex_number &complex_number::operator*=(const complex_number &c) {
 complex_number &complex_number::operator/=(const complex_number &c) {
     double bufferReal = real;
     double bufferImag = imag;
-    real = (bufferReal * c.real + bufferImag * c.imag) / (c.real * c.real + c.imag * c.imag);
-    imag = (c.real * bufferImag - bufferReal * c.imag) / (c.real * c.real + c.imag * c.imag);
+    double div = pow(c.real, 2) + pow(c.imag, 2);
+    real = (bufferReal * c.real + bufferImag * c.imag) / div;
+    imag = (c.real * bufferImag - bufferReal * c.imag) / div;
     return *this;
 }
 
@@ -55,4 +57,8 @@ complex_number operator-(const complex_number &lhs, const complex_number &rhs) {
     complex_number temp = lhs;
     temp -= rhs;
     return temp;
+}
+
+double complex_number::abs() {
+    return sqrt(pow(real, 2) + pow(imag, 2));
 }

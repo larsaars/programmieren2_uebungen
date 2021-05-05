@@ -20,6 +20,8 @@ public:
     complex_number &operator-=(const complex_number &c);
 
     complex_number &operator/=(const complex_number &c);
+
+    double abs();
 };
 
 complex_number operator*(const complex_number &lhs, const complex_number &rhs);
