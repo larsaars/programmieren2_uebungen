@@ -1,6 +1,13 @@
 #include <iostream>
+#include "dynamic_array.h"
+#include <string>
+
+using std::string, std::cout, std::endl;
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    dynamic_array<string> arr("test");
+
+    cout << arr << endl;
+
     return 0;
 }

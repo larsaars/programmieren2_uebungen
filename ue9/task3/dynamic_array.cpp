@@ -1,5 +1,6 @@
 #include <iostream>
 #include "dynamic_array.h"
+#include <ostream>
 
 using std::move, std::endl, std::cerr, std::cout;
 
@@ -29,14 +30,24 @@ const dynamic_array<T> &dynamic_array<T>::operator+=(const dynamic_array &rhs) {
     return *this;
 }
 
+
+// aka the append function of the list
+// add items of type T to list
+template<typename T>
+const dynamic_array<T> &dynamic_array<T>::operator+=(const T &rhs) {
+    this += dynamic_array(rhs);
+    return *this;
+}
+
+
 // print out list
 template<typename T>
-std::ostream &operator<<(std::ostream &out, const dynamic_array<T> &a) {
+std::ostream& operator<<(std::ostream &out, const dynamic_array<T> &rhs) {
     out << "[";
-    for (int i = 0; i < a.len; i++) {
+    for (int i = 0; i < rhs.len; i++) {
         if (i != 0)
             out << ", ";
-        out << a.arr[i];
+        out << rhs.arr[i];
     }
     out << "]";
     return out;
@@ -57,12 +68,4 @@ int dynamic_array<T>::operator[](const T &t) {
         if (t == arr[i])
             return i;
     return -1;
-}
-
-// aka the append function of the list
-// add items of type T to list
-template<typename T>
-const dynamic_array<T> &dynamic_array<T>::operator+=(const T &rhs) {
-
-    return *this;
 }

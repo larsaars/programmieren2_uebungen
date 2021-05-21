@@ -40,7 +40,7 @@ public:
 
     const dynamic_array &operator+=(const T &rhs);
 
-    friend std::ostream &operator<<(std::ostream &out, const dynamic_array<T> &a);
+    friend std::ostream& operator<<(std::ostream &out, const dynamic_array<T> &t);
 };
 
 #endif //TASK3_DYNAMIC_ARRAY_H
