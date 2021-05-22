@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include "dynamic_array.h"
 #include <ostream>
@@ -7,7 +9,7 @@ using std::move, std::endl, std::cerr, std::cout;
 // operator to concatenate two dynamic_arrays:
 // this array will be edited, the rhs will be copied
 template<typename T>
-const dynamic_array<T> &dynamic_array<T>::operator+=(const dynamic_array &rhs) {
+dynamic_array<T> &dynamic_array<T>::operator+=(const dynamic_array<T> &rhs) {
     // fix length attribute in this scope
     len += rhs.len;
     // create new temporary array with new length
@@ -34,23 +36,9 @@ const dynamic_array<T> &dynamic_array<T>::operator+=(const dynamic_array &rhs) {
 // aka the append function of the list
 // add items of type T to list
 template<typename T>
-const dynamic_array<T> &dynamic_array<T>::operator+=(const T &rhs) {
+dynamic_array<T> &dynamic_array<T>::operator+=(const T &rhs) {
     this += dynamic_array(rhs);
     return *this;
-}
-
-
-// print out list
-template<typename T>
-std::ostream& operator<<(std::ostream &out, const dynamic_array<T> &rhs) {
-    out << "[";
-    for (int i = 0; i < rhs.len; i++) {
-        if (i != 0)
-            out << ", ";
-        out << rhs.arr[i];
-    }
-    out << "]";
-    return out;
 }
 
 // access T via index

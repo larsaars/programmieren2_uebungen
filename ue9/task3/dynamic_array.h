@@ -1,7 +1,6 @@
 #ifndef TASK3_DYNAMIC_ARRAY_H
 #define TASK3_DYNAMIC_ARRAY_H
 
-
 #include <ostream>
 #include <string>
 
@@ -10,7 +9,7 @@ template<typename T>
 class dynamic_array {
 private:
     T *arr;
-    int len;
+    int len{};
 
 public:
     dynamic_array() : len(0), arr(nullptr) {}
@@ -23,7 +22,7 @@ public:
         arr[0] = t;
     }
 
-    dynamic_array(T arr0[]){
+    dynamic_array(T arr0[]) {
         arr = arr0;
         len = sizeof(arr) / sizeof(arr[0]);
     }
@@ -32,15 +31,27 @@ public:
         delete[] arr;
     }
 
-    T &operator[](size_t index);
+    T &operator[](size_t);
 
-    int operator[](const T &t);
+    int operator[](const T &);
 
-    const dynamic_array &operator+=(const dynamic_array &rhs);
+    dynamic_array &operator+=(const dynamic_array &);
 
-    const dynamic_array &operator+=(const T &rhs);
+    dynamic_array &operator+=(const T &rhs);
 
-    friend std::ostream& operator<<(std::ostream &out, const dynamic_array<T> &t);
+    friend std::ostream &operator<<(std::ostream &out, const dynamic_array &rhs) {
+        out << "[";
+        for (int i = 0; i < rhs.len; i++) {
+            if (i != 0)
+                out << ", ";
+            out << rhs.arr[i];
+        }
+        out << "]";
+        return out;
+
+    }
 };
+
+#include "dynamic_array.td"
 
 #endif //TASK3_DYNAMIC_ARRAY_H
