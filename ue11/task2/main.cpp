@@ -40,16 +40,17 @@ int vector_max(const vector<int> &v) {
 
 
 // (C)
-template<typename T>
-int largest(const vector<T> &v, int (*sizeFunc)(const T &)) {
+template<typename T, typename V = int>
+int largest(const vector<T> &v, V (*sizeFunc)(const T &)) {
     if (v.empty()) {
         cerr << "No Element in vector!";
         return -1;
     }
 
-    int maxValue = sizeFunc(v[0]), maxIndex = 0;
+    V maxValue = sizeFunc(v[0]);
+    int maxIndex = 0;
     for (int i = 1; i < v.size(); i++) {
-        int sizeI = sizeFunc(v[i]);
+        V sizeI = sizeFunc(v[i]);
 
         if (sizeI > maxValue) {
             maxValue = sizeI;
