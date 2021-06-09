@@ -25,8 +25,6 @@ int main(int argc, char **argv) {
             if (!inputStream) cerr << "Can't open input file!";
 
             readIn(text, inputStream);
-
-            inputStream.close();
         }
     }
 
