@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
-using std::string, std::cout, std::endl, std::cerr;
+using std::string, std::cout, std::endl, std::cerr, std::vector;
 
 class Animal {
 public:
@@ -30,7 +31,7 @@ public:
 
 class Mammal : public Animal {
 public:
-    explicit Mammal(const string &name) : Animal::Animal(name, 4) {}
+    explicit Mammal(const string &name) : Animal(name, 4) {}
 
     ~Mammal() = default;
 
@@ -46,7 +47,7 @@ public:
 
 class Insect : public Animal {
 public:
-    explicit Insect(const string &name) : Animal::Animal(name, 6) {}
+    explicit Insect(const string &name) : Animal(name, 6) {}
 
     ~Insect() = default;
 
@@ -60,7 +61,48 @@ public:
 };
 
 class ZooAnimal : public Animal {
+public:
     virtual void feed() = 0;
+};
+
+class Pferd : public ZooAnimal, public Mammal {
+public:
+    explicit Pferd(const string &name) : Mammal::Mammal(name) {}
+
+    void feed() override {
+        cout << "yoyoyoyoyo" << endl;
+    }
+};
+
+
+class Ferd: public ZooAnimal, public Insect {
+public:
+    explicit Ferd(const string &name) : Insect::Insect(name) {}
+
+    void feed() override {
+        cout << "ferd ferd ferd" << endl;
+    }
+};
+
+
+
+class Zoo {
+    vector<ZooAnimal *> animals;
+
+public:
+    Zoo() {}
+
+    ~Zoo() {}
+
+    void add(ZooAnimal *animal) {
+        animals.emplace_back(animal);
+    }
+
+    void feedAll() {
+        for (auto animal : animals) {
+            animal->feed();
+        }
+    }
 };
 
 int main() {
@@ -80,6 +122,18 @@ int main() {
     cout << fly << endl;
     fly.printLegs();
     fly.printName();
+
+
+    cout << endl << endl;
+
+
+    Zoo zoo;
+
+    Pferd pferd("Bruno");
+
+    zoo.add(&pferd);
+
+    zoo.feedAll();
 
     return 0;
 }
