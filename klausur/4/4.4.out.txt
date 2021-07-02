@@ -1,0 +1,7 @@
+A::A()
+B::B()
+C::C()
+called do sth
+C::~C()
+B::~B()
+A::~A()
