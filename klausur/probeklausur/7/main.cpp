@@ -30,11 +30,6 @@ public:
     string producer, name;
     int count = 1;
     float price;
-
-    item() {}
-
-    item(const string &producer, const string &name, float price = -1) :
-            producer(producer), name(name), price(price) {}
 };
 
 class inventory {
@@ -57,9 +52,10 @@ public:
 };
 
 inventory::inventory(inventory &&temp) {
-    for (int i = 0; i < items.size; i++) {
-        items.data[i] = move(temp.items.data[i]);
-    }
+    items.data = other.items.data;
+	items.size = other.items.size;
+	temp.items.data = nullptr;
+	temp.items.size = 0;
 }
 
 void inventory::add_item(const string &producer, const string &name,
@@ -81,7 +77,11 @@ void inventory::add_item(const string &producer, const string &name,
     if (price == -1)
         throw missing_price();
 
-    items.append(new item(producer, name, price));
+    items.append(new item{producer, name, 1, price});
 }
 
-int main(int argc, char **argv) { cout << "..." << endl; }
+int main(int argc, char **argv) {
+    inventory i;
+    i.add_item("vendor", "kapputtes phone", 100);
+	i.add_item("vendor", "kaputtes phone");
+}
