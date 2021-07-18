@@ -18,7 +18,27 @@ double avg(int count, ...) {
     return total / count;
 }
 
+struct A {
+    virtual void a() = 0;
+};
+
+struct B : A {
+    void a() override {}
+};
+
 int main() {
-    cout << avg(1, 2., 3., 4.) << endl;
+    // cout << avg(1, 2., 3., 4.) << endl;
+    int *i1 = new int[3];
+    int *i2 = (int *) malloc(sizeof(int) * 3);
+
+    int ii = static_cast<int>(3.3);
+
+    auto aB = new B;
+
+    // back to c
+    // B *back = dynamic_cast<B*>(&aB);
+
+
+
     return 0;
 }
